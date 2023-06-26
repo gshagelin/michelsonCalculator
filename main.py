@@ -30,4 +30,14 @@ def michelson_calc (T, theta_i, theta_f, wavelength, N):
 
     fig, ax = plt.subplots()
     ax.plot(n_array,value_array)
+    ax.axis
+    ax.axhline(c='grey', lw=1)
+
+    plt.rc('text', usetex=True)
+    plt.rc('text.latex', preamble=r'\usepackage{textgreek}')
+
+    plt.ylabel(r'$\dfrac{f (θ_f) - f (θ_i) }{λ}$')
+    plt.xlabel('Refractive index')
+    plt.subplots_adjust(left=0.15, bottom=0.1)
+    plt.savefig('michelsonGraph.pdf', )
     plt.show()
