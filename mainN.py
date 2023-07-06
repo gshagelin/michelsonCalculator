@@ -26,11 +26,18 @@ def michelson_calc (T, theta_i, theta_f, wavelength, n):
         value = ((complete_f - complete_i) / wavelength) - N
         value_array.append(value)
 
-    # Finds the refractive index used in the previous equation where the answer
+    # Finds the number of fringe shift used in the previous equation where the answer
     # was closest to zero.
-    fringeCount = np.interp(0, value_array, N_array)
-    print(len(value_array) + ' ' + len(N_array_)
-    print('Number of fringe counts: ' + str(fringeCount))
+    value_array_pos = []
+    for float in value_array:
+        if (float < 0):
+            float *= -1
+        value_array_pos.append(float)
+
+    sorted_list = sorted(value_array_pos)
+    index = value_array_pos.index(sorted_list[0])
+
+    print('Number of fringe shifts: ' + str(N_array[index]))
 
     # Plots a graph that visualise the calculations
     fig, ax = plt.subplots()
@@ -42,7 +49,7 @@ def michelson_calc (T, theta_i, theta_f, wavelength, n):
     plt.rc('text.latex', preamble=r'\usepackage{textgreek}')
 
     plt.ylabel(r'$\dfrac{f (θ_f) - f (θ_i) }{λ}$')
-    plt.xlabel('Refractive fringeCount')
+    plt.xlabel('Number of fringe shifts')
     plt.subplots_adjust(left=0.15, bottom=0.1)
     plt.savefig('michelsonGraph.png', )
     plt.show()
